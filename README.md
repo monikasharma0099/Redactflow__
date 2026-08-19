@@ -116,7 +116,7 @@ mode — fully local.
 ```bash
 # one-time model pull into the Ollama container
 docker exec redactflow-ollama ollama pull llama3.2:3b
-# then set ENABLE\\\_LLM=true in docker-compose.yml and restart
+# then set ENABLE\\\_LLM=true in docker-compose.yml and restartg
 docker compose up -d
 ```
 
