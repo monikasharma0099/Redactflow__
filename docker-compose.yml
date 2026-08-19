@@ -1,0 +1,66 @@
+# RedactFlow v2 — local deployment (no obsolete `version:` field needed with
+# Compose v2).
+#
+# Services:
+#   redactflow — the all-in-one app (FastAPI backend + built React SPA) on :8000
+#   ollama     — local LLM runtime for the OPTIONAL Layer-3 detection stage
+#
+# LLM layer is OFF by default (ENABLE_LLM=false): detection runs with
+# regex + spaCy only, fully local, and the app works even though the Ollama
+# container hosts no model.
+#
+# To enable the LLM layer (Layer 3):
+#   1. Pull a model into the Ollama container:
+#        docker exec redactflow-ollama ollama pull llama3.2:3b
+#      (container name = <project>-ollama-1 under Compose v2 default naming;
+#       `docker compose ps` shows the exact name)
+#   2. Set ENABLE_LLM=true for the redactflow service (below) and restart:
+#        docker compose up -d
+#
+# We intentionally do NOT auto-pull the model from an entrypoint hack
+# (no `sleep 15` tricks): Ollama's /api/tags healthcheck plus
+# depends_on: service_healthy guarantees the runtime is actually serving
+# before the app starts, and the model pull is an explicit, documented,
+# one-time operator step.
+
+services:
+  redactflow:
+    build: .
+    container_name: redactflow-app
+    ports:
+      - "8000:8000"
+    environment:
+      # Set to "true" ONLY after pulling a model (see header comment).
+      - ENABLE_LLM=false
+      - ENABLE_SPACY=true
+      - OLLAMA_HOST=http://ollama:11434
+      - LLM_MODEL=llama3.2:3b
+      - LLM_TIMEOUT=30
+      - DATA_DIR=/app/data
+      # Uncomment to require X-API-Key on all /api/v1 endpoints except /health:
+      # - API_KEY=change-me
+    volumes:
+      - redactflow-data:/app/data
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.3.12   # pinned — do not use :latest
+    container_name: redactflow-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || wget -qO- http://localhost:11434/api/tags >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  redactflow-data:
+  ollama-data:

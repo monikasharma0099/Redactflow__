@@ -1,0 +1,38 @@
+# Version control
+.git
+.github
+
+# Node
+node_modules
+frontend/node_modules
+frontend/dist
+
+# Runtime data & uploaded/stored artifacts
+data
+uploads
+backend/data
+
+# Python caches
+**/__pycache__
+*.pyc
+*.pyo
+
+# Evaluation artifacts (generated, not needed in the image)
+backend/evaluation/results
+backend/evaluation/dataset.json
+
+# Local env / secrets
+.env
+backend/.env
+
+# Tests & docs are not needed in the runtime image build context
+backend/tests
+docs
+*.md
+!README.md
+
+# Misc
+.pytest_cache
+.coverage
+htmlcov
+.DS_Store

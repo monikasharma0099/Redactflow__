@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.env
+.venv
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+frontend/dist/
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads & outputs
+uploads/
+*.png
+*.jpg
+*.jpeg
+*.webp
+!frontend/public/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Runtime data & built SPA (Docker copies dist here at image build time)
+data/
+backend/static/

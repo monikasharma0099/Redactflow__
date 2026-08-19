@@ -1,0 +1,105 @@
+{
+  "dataset": "dataset.json",
+  "n_documents": 60,
+  "configs_run": [
+    "regex-only"
+  ],
+  "configs_skipped": [
+    "- `regex+spacy` **skipped**: spaCy / en_core_web_sm not importable in this environment.",
+    "- `regex+spacy+llm` **skipped**: ENABLE_LLM=false or Ollama unreachable."
+  ],
+  "results": {
+    "regex-only": {
+      "overall": {
+        "precision": 1.0,
+        "recall": 0.6111,
+        "f1": 0.7586,
+        "tp": 220,
+        "fp": 0,
+        "fn": 140
+      },
+      "per_type": {
+        "aadhaar": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 20,
+          "fp": 0,
+          "fn": 0
+        },
+        "address": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 40
+        },
+        "credit_card": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 20,
+          "fp": 0,
+          "fn": 0
+        },
+        "dob": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 30,
+          "fp": 0,
+          "fn": 0
+        },
+        "email": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 50,
+          "fp": 0,
+          "fn": 0
+        },
+        "ip": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 10,
+          "fp": 0,
+          "fn": 0
+        },
+        "name": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 60
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 40
+        },
+        "pan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 30,
+          "fp": 0,
+          "fn": 0
+        },
+        "phone": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 60,
+          "fp": 0,
+          "fn": 0
+        }
+      }
+    }
+  }
+}
