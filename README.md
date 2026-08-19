@@ -4,12 +4,6 @@
 > images and PDFs — locally, with a three-layer detection pipeline, a
 > human-in-the-loop review UI, and a reproducible evaluation framework.
 
-!\[License](https://img.shields.io/badge/license-MIT-blue.svg)
-!\[Python](https://img.shields.io/badge/python-3.11-blue.svg)
-!\[Node](https://img.shields.io/badge/node-20-339933.svg)
-!\[React](https://img.shields.io/badge/react-18-61DAFB.svg)
-!\[Docker](https://img.shields.io/badge/docker-multi--stage-2496ED.svg)
-!\[CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF.svg)
 
 RedactFlow v2 is a BTech final-year project: a FastAPI + React/TypeScript
 application that finds PII in scanned/photographed documents and redacts it
